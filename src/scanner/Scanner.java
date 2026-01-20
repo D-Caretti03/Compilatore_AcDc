@@ -10,6 +10,10 @@ import java.util.Map;
 
 import token.*;
 
+/**
+ * Classe pubblica Scanner per gestire lo scanner del programma da compilare, usa un automa a stati finiti per emettere il token giusto.
+ * Per leggere il file in input carattere per carattere usiamo un buffer di tipo PushbackReader.
+ */
 public class Scanner {
     final char EOF = (char) -1;
     private int riga;
@@ -70,6 +74,11 @@ public class Scanner {
         operTkType.put('*', TokenType.TIMES);
     }
 
+    /**
+     * Restituisce il l'ultimo tokeno generato, fino a quando non si chiama la nextToken() che aggiornerà currToken.
+     * @return Il Token salvato in cache tramite currToken
+     * @throws LexicalException Eccezione lessicale se la nextToken lancia un'eccezione lessicale
+     */
     public Token peekToken() throws LexicalException{
         if (currToken == null){
             currToken = nextToken();
@@ -78,9 +87,11 @@ public class Scanner {
         return currToken;
     }
 
-    // nextToken ritorna il prossimo token nel file di input e legge
-    // i caratteri del token ritornato (avanzando fino al carattere
-    // successivo all'ultimo carattere del token)
+    /**
+     * Tramite un automa a stati finiti genera un token prendendo in input carattere per carattere il file da compilare.
+     * @return Il Token emesso dato l'attuale input nell'automa a stati finiti
+     * @throws LexicalException Eccezione lessicale per errori nel linguaggio
+     */
     public Token nextToken() throws LexicalException{
         if (currToken != null){
             Token temp = currToken;
@@ -147,7 +158,11 @@ public class Scanner {
         throw new LexicalException("ERROR: no token starts with '" + nextChar + "': " + riga + ":" + colonna);
     }
 
-    // private Token scanId()
+    /**
+     * Nodo dell'automa dove si legge il nome di una variable oppure una parola chiave
+     * @return Token generato dal nodo dell'automa
+     * @throws LexicalException Eccezione lessicale se l'I/O lancia un'eccezione
+     */
     private Token scanId() throws  LexicalException{
         char letter = peekChar();
         StringBuilder word = new StringBuilder();
@@ -164,6 +179,11 @@ public class Scanner {
         return new Token(riga, TokenType.ID, word.toString());
     }
 
+    /**
+     * Nodo dell'automa che legge un operatore binario
+     * @return Token generato dal nodo dell'automa
+     * @throws LexicalException Eccezione lessicale se l'I/O lancia un'eccezione, oppure se l'operatore non è riconosciuto
+     */
     private Token scanOperator() throws LexicalException{
         char letter = readChar();
         char next = peekChar();
@@ -184,6 +204,11 @@ public class Scanner {
         return new Token(riga, operTkType.get(letter));
     }
 
+    /**
+     * Nodo dell'automa che legge in input un numero che può essere un intero o un float
+     * @return Token generato dal nodo dell'automa
+     * @throws LexicalException Eccezione lessicale se l'I/O lancia un'eccezione, oppure se un numero comincia con lo 0
+     */
     private Token scanNumber() throws LexicalException {
         char digit = peekChar();
         StringBuilder number = new StringBuilder();
@@ -206,6 +231,12 @@ public class Scanner {
         return new Token(riga, TokenType.INT, value);
     }
 
+    /**
+     *
+     * @param number stringa contenente il numero letto fino a questo momento, ovvero la parte intera
+     * @return Token generato dal nodo dell'automa
+     * @throws LexicalException Eccezione lessicale se l'I/O lancia un eccezione, oppure se il float ha più di 5 cifre decimali
+     */
     private Token scanFloat(StringBuilder number) throws LexicalException{
         char digit = readChar();
         number.append(digit);
@@ -232,7 +263,11 @@ public class Scanner {
         return new Token(riga, TokenType.FLOAT, value);
     }
 
-
+    /**
+     * Legge in input un carattere e lo consuma
+     * @return Carattere letto dall'input
+     * @throws LexicalException Eccezione lessicala wrappata, contiene un'eccezione di I/O
+     */
     private char readChar() throws LexicalException {
         colonna++;
         char c;
@@ -244,6 +279,11 @@ public class Scanner {
         return c;
     }
 
+    /**
+     * Sbircia il carattere successivo nell'input senza consumarlo
+     * @return Carattere successivo nell'input
+     * @throws LexicalException Eccezione lessicale wrappata, contiene un'eccezione di I/O
+     */
     private char peekChar() throws LexicalException {
         char c;
         try{

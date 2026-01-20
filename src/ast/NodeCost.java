@@ -2,6 +2,10 @@ package ast;
 
 import visitor.IVisitor;
 
+/**
+ * Classe pubblica NodeCost che estende {@link NodeExpr}.
+ * Nodo che indica un valore costante
+ */
 public class NodeCost extends NodeExpr{
     private String value;
     private LangType type;

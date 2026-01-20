@@ -1,5 +1,8 @@
 package scanner;
 
+/**
+ * Classe pubblica LexicalException che estende {@link Exception}
+ */
 public class LexicalException extends Exception {
 
     public LexicalException(){}

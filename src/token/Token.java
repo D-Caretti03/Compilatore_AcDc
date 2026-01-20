@@ -1,5 +1,10 @@
 package token;
 
+/**
+ * Classe pubblic Token dove gestiamo gli oggetti di tipo token:
+ * una riga per tenere conto della riga attuale che stiao processando, un tipo TokenType per sapere che tipo di token è stato emesso,
+ * un valore String per memorizzare i nomi degli id.
+ */
 public class Token {
     private int riga;
     private TokenType tipo;

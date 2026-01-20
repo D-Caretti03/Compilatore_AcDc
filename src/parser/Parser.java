@@ -1,5 +1,4 @@
 package parser;
-import org.w3c.dom.Node;
 import scanner.*;
 import token.Token;
 import token.TokenType;
@@ -7,6 +6,9 @@ import ast.*;
 
 import java.util.ArrayList;
 
+/**
+ * Classe pubblica Parser che genera l'albero contenente i nodi del programma, ottenuti dalla classe Scanner
+ */
 public class Parser {
     private final Scanner scanner;
 
@@ -30,10 +32,20 @@ public class Parser {
         throw new SyntacticException("Expected " + type + ": " + tk.GetRiga());
     }
 
+    /**
+     * Metodo da chiamare per cominciare il parsing dei token
+     * @return NodeProgram, root dell'albero
+     * @throws SyntacticException Eccezione sintattica
+     */
     public NodeProgram parse() throws SyntacticException {
         return this.parsePrg();
     }
 
+    /**
+     * Esegue il parse della root dell'albero, andando a generare poi i suoi figli
+     * @return NodeProgram, root dell'albero
+     * @throws SyntacticException Eccezione sintattica se il token iniziale non è corretto
+     */
     private NodeProgram parsePrg() throws SyntacticException {
         Token tk;
         try {
@@ -52,6 +64,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Effettua il parse dei nodi figli della root, inserendoli dentro un ArrayList
+     * @return ArrayList di NodeDecSt
+     * @throws SyntacticException Eccezione sintattica se il token è inaspettato in questo nodo
+     */
     private ArrayList<NodeDecSt> parseDSs() throws SyntacticException {
         Token tk;
         try {
@@ -80,6 +97,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Effettua il parse della dichiarazione
+     * @return NodeDecl nodo della dichiarazione
+     * @throws SyntacticException Eccezione sintattica se il token è inaspettato in questo nodo
+     */
     private NodeDecl parseDcl() throws SyntacticException {
         Token tk;
         try {
@@ -100,6 +122,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Effettua il parse del tipo (int o float)
+     * @return LangType il tipo definito nel nostro linguaggio
+     * @throws SyntacticException Eccezione sintattica se il token è inaspettato in questo nodo
+     */
     private LangType parseTy() throws SyntacticException {
         Token tk;
         try {
@@ -122,6 +149,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Effettua il parse della dichiarazione, se termina con ";" oppure è un assegnamento
+     * @return  NodeExpr nodo dell'espressione di inizializzazione
+     * @throws SyntacticException Eccezione sintattica se il token è inaspettato in questo nodo
+     */
     private NodeExpr parseDclp() throws SyntacticException {
         Token tk;
         try {
@@ -146,6 +178,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Effettua il parse dello statement
+     * @return  NodeState nodo statement
+     * @throws SyntacticException   Eccezione sintattica se il token è inaspettato in questo nodo
+     */
     private NodeStat parseStm() throws SyntacticException {
         Token tk;
         try {
@@ -196,6 +233,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Effettua il parse dell'espressione
+     * @return  NodeExpr il nodo dell'espressione
+     * @throws SyntacticException   Eccezione sintattica se il token è inaspettato in questo nodo
+     */
     private NodeExpr parseExp() throws SyntacticException {
         Token tk;
         try {
@@ -214,6 +256,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Effettua il parse della parte destra dell'espressione
+     * @param left  Nodo sinistro dell'espressione
+     * @return  NodeExpr nodo dell'espressione
+     * @throws SyntacticException   Eccezione sintattica se il token è inaspettato in questo nodo
+     */
     private NodeExpr parseExpP(NodeExpr left) throws SyntacticException {
         Token tk;
         try {
@@ -243,6 +291,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Effettua il parse dell'epressione
+     * @return  NodeExpr nodo dell'espressione
+     * @throws SyntacticException   Eccezione sintattica se il token è inaspettato in questo nodo
+     */
     private NodeExpr parseTr() throws SyntacticException {
         Token tk;
         try {
@@ -261,6 +314,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Effettua il parse dell'espressione in base al segno dell'operazione
+     * @param left  Nodo sinistro dell'espressione
+     * @return  NodeExpr nodo dell'espressione
+     * @throws SyntacticException Eccezione sintattica se il token è inaspettato in questo nodo
+     */
     private NodeExpr parseTrp(NodeExpr left) throws SyntacticException {
         Token tk;
         try {
@@ -290,6 +349,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Effettua il parse del valore nell'espressione
+     * @return  NodeExpr nodo dell'espressione
+     * @throws SyntacticException   Eccezione sintattica se il token è inaspettato in questo nodo
+     */
     private NodeExpr parseVal() throws SyntacticException {
         Token tk;
         try {
@@ -316,6 +380,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Effettua il parse dell'operazione da effettare
+     * @return  AssignOper nodo per effettuare l'assign delle variabili
+     * @throws SyntacticException   Eccezione sintattica se il token è inaspettato in questo nodo
+     */
     private AssignOper parseOp() throws SyntacticException {
         Token tk;
         try {

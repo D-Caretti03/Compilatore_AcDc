@@ -2,6 +2,10 @@ package ast;
 
 import visitor.IVisitor;
 
+/**
+ * Classe pubblica NodeDeref che estende {@link NodeExpr}.
+ * Nodo che indica la dereferenziazione di una variabile
+ */
 public class NodeDeref extends NodeExpr{
     private NodeId id;
 

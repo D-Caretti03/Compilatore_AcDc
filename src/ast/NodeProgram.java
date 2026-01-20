@@ -5,6 +5,10 @@ import visitor.IVisitor;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Classe pubblica NodeProgram che estende {@link NodeAst}.
+ * Nodo che indica la root dell'ast
+ */
 public class NodeProgram extends NodeAst{
     private ArrayList<NodeDecSt> decSts;
 

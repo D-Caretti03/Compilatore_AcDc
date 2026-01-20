@@ -2,6 +2,10 @@ package ast;
 
 import visitor.IVisitor;
 
+/**
+ * Nodo pubblico NodePrint che estende {@link NodeStat}.
+ * Nodo che indica la print di una variabile
+ */
 public class NodePrint extends NodeStat{
     private NodeId id;
 

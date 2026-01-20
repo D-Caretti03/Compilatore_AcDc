@@ -2,6 +2,10 @@ package ast;
 
 import visitor.IVisitor;
 
+/**
+ * Classe pubblica NodeBinOp che estende {@link NodeExpr}.
+ * Nodo che indica un operazione binaria
+ */
 public class NodeBinOp extends NodeExpr{
     private LangOper op;
     private NodeExpr left;
@@ -17,6 +21,7 @@ public class NodeBinOp extends NodeExpr{
     public LangOper getOp(){
         return this.op;
     }
+    public void setOp(LangOper op) {this.op = op;}
 
     public NodeExpr getLeft(){
         return this.left;

@@ -1,5 +1,8 @@
 package token;
 
+/**
+ *  Enumerato usato per identificare i tipi di token che riconosciamo all'interno del nostro compilatore
+ */
 public enum TokenType {
     INT,
     FLOAT,

@@ -1,7 +1,8 @@
 package parser;
 
-import scanner.LexicalException;
-
+/**
+ * Classe pubblica SyntacticException per le eccezioni sintattice, estende {@link Exception}
+ */
 public class SyntacticException extends Exception{
     public SyntacticException() {};
 

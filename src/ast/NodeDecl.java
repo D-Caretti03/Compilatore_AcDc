@@ -2,6 +2,10 @@ package ast;
 
 import visitor.IVisitor;
 
+/**
+ * Classe pubblica NodeDecl che estende {@link NodeDecSt}.
+ * Nodo che indica la dichiarazione di una variabile e la sua possibile inizializzazione
+ */
 public class NodeDecl extends NodeDecSt{
     private NodeId id;
     private LangType type;

@@ -2,6 +2,10 @@ package ast;
 
 import visitor.IVisitor;
 
+/**
+ * Classe pubblica NodeAssign che estende {@link NodeStat}.
+ * Nodo che rappresenta l'assegnamento di un'espressione a una variabile
+ */
 public class NodeAssign extends NodeStat{
     private NodeId id;
     private NodeExpr expr;

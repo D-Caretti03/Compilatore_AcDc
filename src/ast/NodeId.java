@@ -3,6 +3,10 @@ package ast;
 import symbolTable.SymbolTable;
 import visitor.IVisitor;
 
+/**
+ * Classe pubblica NodeId che estende {@link NodeAst}.
+ * Nodo che indica una variabile con nome e attributi
+ */
 public class NodeId extends NodeAst{
     private String name;
     private SymbolTable.Attributes attributes;
