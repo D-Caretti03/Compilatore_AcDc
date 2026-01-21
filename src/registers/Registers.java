@@ -6,6 +6,10 @@ public class Registers {
 
     public Registers(){}
 
+    public static void resetRegisters(){
+        nextRegister = 'a';
+    }
+
     public static char newRegister(){
         char register = nextRegister;
         nextRegister++;

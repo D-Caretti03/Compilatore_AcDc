@@ -1,20 +1,30 @@
 package test;
 
 import ast.NodeProgram;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import parser.Parser;
 import parser.SyntacticException;
+import registers.Registers;
 import scanner.LexicalException;
 import scanner.Scanner;
+import symbolTable.SymbolTable;
 import visitor.CodeGeneratorVisitor;
 import visitor.TypeCheckingVisitor;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Classe TestCodeGenerator che testa la classe {@link CodeGeneratorVisitor}, testando la visita con code generator
+ * Classe TestCodeGenerator che testa la classe {@link CodeGeneratorVisitor}, testando la visita con code generator.
  */
 class TestCodeGeneratorVisitor {
+
+    @AfterEach
+    void clearTable(){
+        Registers.resetRegisters();
+    }
 
     @Test
     void testAssign() throws LexicalException, SyntacticException {

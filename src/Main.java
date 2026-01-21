@@ -1,3 +1,4 @@
+import ast.ErrorType;
 import ast.NodeProgram;
 import parser.Parser;
 import parser.SyntacticException;
@@ -8,10 +9,12 @@ import visitor.TypeCheckingVisitor;
 import java.io.FileWriter;
 import java.io.IOException;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+        if (args.length != 1){
+            System.out.println("Expected file in args");
+            System.exit(1);
+        }
         String nomeFile = args[0];
         NodeProgram nodeProgram;
         TypeCheckingVisitor typeCheckingVisitor = new TypeCheckingVisitor();
@@ -22,6 +25,10 @@ public class Main {
             throw new RuntimeException(e);
         }
         nodeProgram.accept(typeCheckingVisitor);
+        if (typeCheckingVisitor.GetResType() instanceof ErrorType){
+            System.out.println(((ErrorType) typeCheckingVisitor.GetResType()).getMsg());
+            System.exit(2);
+        }
         nodeProgram.accept(codeGeneratorVisitor);
 
         int indexOfDot = nomeFile.lastIndexOf('.');
