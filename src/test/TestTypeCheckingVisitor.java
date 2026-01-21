@@ -13,6 +13,9 @@ import visitor.TypeCheckingVisitor;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Classe TestTypeCheckingVisitor che testa {@link TypeCheckingVisitor}, testando la visita con type checking
+ */
 class TestTypeCheckingVisitor {
     @Test
     void testDicRipetute() throws LexicalException, SyntacticException {

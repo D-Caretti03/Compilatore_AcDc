@@ -9,8 +9,10 @@ import token.TokenType;
 
 import java.util.ArrayList;
 
+/**
+ * Classe TestToken per testare la classe {@link Token}, testando riga, tipo e valore
+ */
 class TestToken {
-
     @Test
     void test() {
         ArrayList<Token> t = new ArrayList<>();

@@ -13,6 +13,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.DoubleSummaryStatistics;
 
+/**
+ * Classe TestScanner per testare la classe {@link Scanner}, dove scannerizzo i token
+ */
 class TestScanner {
 
     @Test

@@ -11,6 +11,9 @@ import visitor.TypeCheckingVisitor;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Classe TestCodeGenerator che testa la classe {@link CodeGeneratorVisitor}, testando la visita con code generator
+ */
 class TestCodeGeneratorVisitor {
 
     @Test
@@ -50,7 +53,7 @@ class TestCodeGeneratorVisitor {
         CodeGeneratorVisitor cVisitor = new CodeGeneratorVisitor();
         nP.accept(tVisitor);
         nP.accept(cVisitor);
-        System.out.println(cVisitor.getLog());
+        assertEquals("Exceeded max register number\n", cVisitor.getLog());
     }
 
 }

@@ -9,6 +9,9 @@ import ast.NodeProgram;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Classe TestParser per testare la classe {@link Parser} che tramite lo scanner genera nodi dell'ast
+ */
 class TestParser {
 
     @Test
